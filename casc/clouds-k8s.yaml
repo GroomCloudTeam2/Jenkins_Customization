@@ -11,8 +11,8 @@ jenkins:
         jenkinsTunnel: "EC2_PUBLIC_DNS_OR_IP:50000"
 
         templates:
-          - name: "k8s-gradle"
-            label: "k8s-gradle"
+          - name: "gradle-agent"
+            label: "gradle-agent"
             idleMinutes: 5
             serviceAccount: "jenkins"
 
