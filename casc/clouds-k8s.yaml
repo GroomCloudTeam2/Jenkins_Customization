@@ -1,0 +1,27 @@
+jenkins:
+  clouds:
+    - kubernetes:
+        name: "kubernetes"
+        namespace: "jenkins-agents"
+
+        # Pod가 접근 가능한 EC2 Jenkins 주소
+        jenkinsUrl: "http://EC2_PUBLIC_DNS_OR_IP:8080"
+
+        # 기본 TCP inbound agent 포트(50000) - Pod에서 접근 가능해야 함
+        jenkinsTunnel: "EC2_PUBLIC_DNS_OR_IP:50000"
+
+        templates:
+          - name: "k8s-gradle"
+            label: "k8s-gradle"
+            idleMinutes: 5
+            serviceAccount: "jenkins"
+
+            containers:
+              - name: "jnlp"
+                image: "jenkins/inbound-agent:latest"
+                args: "^${computer.jnlpmac} ^${computer.name}"
+
+              - name: "gradle"
+                image: "gradle:8-jdk17"
+                command: ["cat"]
+                ttyEnabled: true

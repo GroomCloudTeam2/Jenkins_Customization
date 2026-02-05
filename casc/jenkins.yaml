@@ -1,0 +1,46 @@
+jenkins:
+  systemMessage: "Groom CI Server"
+
+  numExecutors: 3
+  mode: NORMAL
+  labelString: "master"
+
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "admin"
+          name: "Admin"
+          password: "1234"   # 실환경에서는 반드시 변경
+
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+
+  remotingSecurity:
+    enabled: true
+
+tool:
+  git:
+    installations:
+      - name: "Default Git"
+        home: "git"
+
+#credentials:
+#  system:
+#    domainCredentials:
+#      - credentials:
+#          - string:
+#              scope: GLOBAL
+#              id: "slack-token"
+#              secret: "${SLACK_TOKEN}"
+
+unclassified:
+  location:
+    url: "http://localhost:8080/"
+    adminAddress: "hyunho3445@gmail.com"
+
+#  slackNotifier:
+#    teamDomain: "groom_2team"
+#    tokenCredentialsId: "slack-token"
+#    room: "#jenkins-alerts"
