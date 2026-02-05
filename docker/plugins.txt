@@ -12,7 +12,5 @@ pipeline-stage-view
 timestamper
 ansicolor
 aws-credentials
-kubernetes
 build-timeout
 ws-cleanup
-prometheus
