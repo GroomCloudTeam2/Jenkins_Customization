@@ -1,10 +1,7 @@
 def SEED_JOB_NAME = "seed"
 
-// DSL을 담고 있는 레포(= Jenkins_Customization)
 def DSL_REPO_URL    = "https://github.com/GroomCloudTeam2/Jenkins_Customization.git"
 def DSL_REPO_BRANCH = "main"
-
-// Jenkins에 등록된 GitHub PAT 크리덴셜 ID
 def GITHUB_CRED_ID  = "github-token"
 
 pipelineJob(SEED_JOB_NAME) {
@@ -22,8 +19,6 @@ pipeline {
       steps {
         git url: '${DSL_REPO_URL}', branch: '${DSL_REPO_BRANCH}', credentialsId: '${GITHUB_CRED_ID}'
         sh '''
-          echo "[DEBUG] workspace tree (depth=3)"
-          find . -maxdepth 3 -type d -print
           echo "[DEBUG] groovy files under repo"
           find . -name "*.groovy" -maxdepth 5 -print
         '''
@@ -33,7 +28,7 @@ pipeline {
     stage('Apply Job DSL') {
       steps {
         jobDsl(
-          targets: 'jenkins-customization/job-dsl/dsl/*.groovy',
+          targets: 'job-dsl/dsl/*.groovy',
           sandbox: false,
           lookupStrategy: 'JENKINS_ROOT',
           removedJobAction: 'DELETE',
