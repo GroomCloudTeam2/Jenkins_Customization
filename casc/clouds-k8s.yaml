@@ -23,5 +23,5 @@ jenkins:
 
               - name: "gradle"
                 image: "gradle:8-jdk17"
-                command: ["cat"]
+                command: "cat"
                 ttyEnabled: true
