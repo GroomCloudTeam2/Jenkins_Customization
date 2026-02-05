@@ -26,7 +26,7 @@ multibranchPipelineJob("${ROOT_FOLDER}/jc-root") {
                     credentialsId(GITHUB_CRED_ID)
 
                     // 플러그인이 업데이트되면서 없으면 error
-                    repositoryUrl("https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}")
+                    repositoryUrl("https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}.git")
 
                     // false : repoOwner() + repository() 조합이 진자 설정 소스
                     // true : repositoryUrl() 값이 진자 설정 소스
