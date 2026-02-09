@@ -28,7 +28,7 @@ services:
       - ../job-dsl:/var/jenkins_home/job-dsl:ro
 
       # Jenkins 파이프라인에서 docker build, docker run 등을 실행 가능
-      - /var/run/docker.sock:/var/run/docker.sock
+      # - /var/run/docker.sock:/var/run/docker.sock
 
     user: "root"
 

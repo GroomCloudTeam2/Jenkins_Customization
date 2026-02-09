@@ -14,3 +14,4 @@ ansicolor
 aws-credentials
 build-timeout
 ws-cleanup
+kubernetes

@@ -59,3 +59,6 @@ multibranchPipelineJob("${ROOT_FOLDER}/jc-root") {
         periodicFolderTrigger { interval("1h") }
     }
 }
+
+
+

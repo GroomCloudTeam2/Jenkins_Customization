@@ -5,16 +5,28 @@ jenkins:
         namespace: "jenkins-agents"
 
         # Pod가 접근 가능한 EC2 Jenkins 주소
-        jenkinsUrl: "http://EC2_PUBLIC_DNS_OR_IP:8080"
+        jenkinsUrl: "http://10.0.30.252:8080"
 
         # 기본 TCP inbound agent 포트(50000) - Pod에서 접근 가능해야 함
-        jenkinsTunnel: "EC2_PUBLIC_DNS_OR_IP:50000"
+        jenkinsTunnel: "10.0.30.252:50000"
 
         templates:
-          - name: "k8s-gradle"
-            label: "k8s-gradle"
-            idleMinutes: 5
-            serviceAccount: "jenkins"
+          - name: "gradle-agent"
+            label: "gradle-agent"
+            idleMinutes: 5 # 5분동안 동작 없으면 파드 삭제
+
+            yaml: |
+              spec:
+                serviceAccountName: jenkins-agent-sa
+                affinity:
+                  nodeAffinity:
+                    requiredDuringSchedulingIgnoredDuringExecution:
+                      nodeSelectorTerms:
+                      - matchExpressions:
+                        - key: role
+                          operator: In
+                          values:
+                            - ci
 
             containers:
               - name: "jnlp"
@@ -25,3 +37,17 @@ jenkins:
                 image: "gradle:8-jdk17"
                 command: ["cat"]
                 ttyEnabled: true
+                volumeMounts:
+                  - name: gradle-cache
+                    mountPath: /home/jenkins/.gradle
+
+              - name: "aws-cli"
+                image: "amazon/aws-cli:2.15.0"
+                command: ["cat"]
+                ttyEnabled: true
+
+            volumes:
+              - name: gradle-cache
+                persistentVolumeClaim:
+                  claimName: gradle-cache-pvc
+
