@@ -13,7 +13,7 @@ jenkins:
         templates:
           - name: "gradle-agent"
             label: "gradle-agent"
-            idleMinutes: 5 # 5분동안 동작 없으면 파드 삭제
+            idleMinutes: 2 # 5분동안 동작 없으면 파드 삭제
 
             yaml: |
               spec:
