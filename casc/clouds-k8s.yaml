@@ -3,20 +3,25 @@ jenkins:
     - kubernetes:
         name: "kubernetes"
         namespace: "jenkins-agents"
+
         jenkinsUrl: "http://10.0.30.252:8080"
         jenkinsTunnel: "10.0.30.252:50000"
+
         templates:
           - name: "gradle-agent"
             label: "gradle-agent"
             idleMinutes: 2
+
             yaml: |
               spec:
                 serviceAccountName: jenkins-agent-sa
+
                 tolerations:
                   - key: "role"
                     operator: "Equal"
                     value: "ci"
                     effect: "NoSchedule"
+
                 affinity:
                   nodeAffinity:
                     requiredDuringSchedulingIgnoredDuringExecution:
@@ -26,14 +31,17 @@ jenkins:
                               operator: In
                               values:
                                 - ci
+
                 volumes:
                   - name: gradle-cache
                     persistentVolumeClaim:
                       claimName: gradle-cache-pvc
+
                 containers:
                   - name: "jnlp"
                     image: "jenkins/inbound-agent:latest"
-                    args: ["^${computer.jnlpmac}", "^${computer.name}"]
+                    args: ["${computer.jnlpmac}", "${computer.name}"]
+
                   - name: "gradle"
                     image: "gradle:8-jdk17"
                     command: ["cat"]
@@ -41,6 +49,7 @@ jenkins:
                     volumeMounts:
                       - name: gradle-cache
                         mountPath: /home/jenkins/.gradle
+
                   - name: "aws-cli"
                     image: "amazon/aws-cli:2.15.0"
                     command: ["cat"]
