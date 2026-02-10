@@ -8,7 +8,7 @@ jenkins:
         templates:
           - name: "gradle-agent"
             label: "gradle-agent"
-            idleMinutes: 5  # 주석과 일치
+            idleMinutes: 2
             yaml: |
               spec:
                 serviceAccountName: jenkins-agent-sa
