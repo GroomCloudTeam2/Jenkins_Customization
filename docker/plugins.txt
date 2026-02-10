@@ -15,3 +15,4 @@ aws-credentials
 build-timeout
 ws-cleanup
 kubernetes
+lockable-resources

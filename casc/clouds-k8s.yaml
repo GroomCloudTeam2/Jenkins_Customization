@@ -40,12 +40,22 @@ jenkins:
                 containers:
                   - name: "jnlp"
                     image: "jenkins/inbound-agent:latest"
-                    args: ["${computer.jnlpmac}", "${computer.name}"]
+                    resources:
+                      requests:
+                        memory: "512Mi"
+                        cpu: "200m"
 
                   - name: "gradle"
                     image: "gradle:8-jdk17"
                     command: ["cat"]
                     tty: true
+                    resources:
+                      requests:
+                        memory: "2Gi"
+                        cpu: "500m"
+                      limits:
+                        memory: "4Gi"
+                        cpu: "2"
                     volumeMounts:
                       - name: gradle-cache
                         mountPath: /home/jenkins/.gradle
@@ -54,3 +64,8 @@ jenkins:
                     image: "amazon/aws-cli:2.15.0"
                     command: ["cat"]
                     tty: true
+                    resources:
+                      requests:
+                        memory: "256Mi"
+                        cpu: "100m"
+                
