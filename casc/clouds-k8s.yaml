@@ -12,6 +12,11 @@ jenkins:
             yaml: |
               spec:
                 serviceAccountName: jenkins-agent-sa
+                tolerations:
+                  - key: "role"
+                    operator: "Equal"
+                    value: "ci"
+                    effect: "NoSchedule"
                 affinity:
                   nodeAffinity:
                     requiredDuringSchedulingIgnoredDuringExecution:
