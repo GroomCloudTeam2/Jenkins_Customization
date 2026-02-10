@@ -27,6 +27,10 @@ jenkins:
                           operator: In
                           values:
                             - ci
+                volumes:
+                  - name: gradle-cache
+                    persistentVolumeClaim:
+                      claimName: gradle-cache-pvc
 
             containers:
               - name: "jnlp"
@@ -46,8 +50,4 @@ jenkins:
                 command: ["cat"]
                 ttyEnabled: true
 
-            volumes:
-              - name: gradle-cache
-                persistentVolumeClaim:
-                  claimName: gradle-cache-pvc
 
