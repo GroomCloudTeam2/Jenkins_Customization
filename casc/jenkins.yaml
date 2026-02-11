@@ -26,31 +26,23 @@ tool:
       - name: "Default Git"
         home: "git"
 
-#credentials:
-#  system:
-#    domainCredentials:
-#      - credentials:
-#          - string:
-#              scope: GLOBAL
-#              id: "slack-token"
-#              secret: "${SLACK_TOKEN}"
-
 unclassified:
   location:
     url: "http://localhost:8080/"
     adminAddress: "hyunho3445@gmail.com"
 
-    globalLibraries:
-      libraries:
-        - name: "shared-lib"
-          defaultVersion: "k8s"
-          implicit: true
-          allowVersionOverride: true
-          retriever:
-            modernSCM:
-              scm:
-                git:
-                  remote: "https://github.com/GroomCloudTeam2/jenkins-shared-lib.git"
+  globalLibraries:
+    libraries:
+      - name: "shared-lib"
+        defaultVersion: "k8s"
+        implicit: true
+        allowVersionOverride: true
+        retriever:
+          modernSCM:
+            scm:
+              git:
+                remote: "https://github.com/GroomCloudTeam2/jenkins-shared-lib.git"
+
 #  slackNotifier:
 #    teamDomain: "groom_2team"
 #    tokenCredentialsId: "slack-token"
