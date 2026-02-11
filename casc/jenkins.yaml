@@ -17,8 +17,6 @@ jenkins:
     loggedInUsersCanDoAnything:
       allowAnonymousRead: false
 
-  remotingSecurity:
-    enabled: true
 
 tool:
   git:
@@ -28,7 +26,7 @@ tool:
 
 unclassified:
   location:
-    url: "http://localhost:8080/"
+    url: "http://10.0.30.246:8080/"
     adminAddress: "hyunho3445@gmail.com"
 
   globalLibraries:
