@@ -10,7 +10,7 @@ jenkins:
         templates:
           - name: "gradle-agent"
             label: "gradle-agent"
-            idleMinutes: 2
+            idleMinutes: 1
 
             yaml: |
               spec:
