@@ -4,8 +4,9 @@ jenkins:
         name: "kubernetes"
         namespace: "jenkins-agent"
 
-        jenkinsUrl: "http://10.0.30.252:8080"
-        jenkinsTunnel: "10.0.30.252:50000"
+        jenkinsUrl: "http://10.0.30.246:8080"
+
+        webSocket: true
 
         templates:
           - name: "gradle-agent"
@@ -58,7 +59,7 @@ jenkins:
                         cpu: "2"
                     volumeMounts:
                       - name: gradle-cache
-                        mountPath: /home/jenkins/.gradle
+                        mountPath: /home/jenkins
 
                   - name: "aws-cli"
                     image: "amazon/aws-cli:2.15.0"
