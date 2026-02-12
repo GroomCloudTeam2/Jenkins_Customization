@@ -2,7 +2,7 @@ jenkins:
   clouds:
     - kubernetes:
         name: "kubernetes"
-        namespace: "jenkins-agents"
+        namespace: "jenkins-agent"
 
         jenkinsUrl: "http://10.0.30.252:8080"
         jenkinsTunnel: "10.0.30.252:50000"

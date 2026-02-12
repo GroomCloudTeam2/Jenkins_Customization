@@ -31,7 +31,7 @@ unclassified:
 
   globalLibraries:
     libraries:
-      - name: "shared-lib"
+      - name: "jenkins-shared-lib"
         defaultVersion: "k8s"
         implicit: true
         allowVersionOverride: true
